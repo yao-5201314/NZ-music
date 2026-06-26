@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 生日快乐 · 小咩和小咪的故事</title>
+
+    <!-- Google Fonts - 优美字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Noto+Serif+SC:wght@300;400;500;600;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --pink-light: #fff0f3;
+            --pink: #ffb3c1;
+            --pink-mid: #ff8fa3;
+            --pink-deep: #ff6b81;
+            --rose: #e8a0b4;
+            --rose-gold: #c4917b;
+            --cream: #fffaf5;
+            --white: #ffffff;
+            --text-dark: #4a3f3f;
+            --text-mid: #6b5b5b;
+            --text-light: #8c7a7a;
+            --gold: #d4a574;
+            --shadow-soft: 0 4px 20px rgba(180, 140, 140, 0.15);
+            --shadow-card: 0 8px 32px rgba(160, 120, 120, 0.18);
+            --shadow-hover: 0 16px 40px rgba(160, 110, 110, 0.25);
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --transition-smooth: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --nav-height: 50px;
+            --record-size: 55px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--pink) var(--pink-light);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--pink-light);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--pink);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--pink-mid);
+        }
+
+        body {
+            font-family: 'Noto Serif SC', 'STSong', 'Songti SC', 'SimSun', serif;
+            background: linear-gradient(160deg, #fef5f7 0%, #fff0f3 15%, #fef9fb 30%, #fff5f6 45%, #fef7f8 55%, #fff3f5 70%, #fef8f9 85%, #fff0f2 100%);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.7;
+            position: relative;
+            cursor: default;
+            padding-top: 70px;
+        }
+
+        /* ============ 飘落花瓣容器 ============ */
+        .petals-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            top: -60px;
+            opacity: 0;
+            pointer-events: none;
+            animation: petalFall linear infinite;
+            filter: blur(0.5px);
+            will-change: transform, opacity;
+        }
+
+        .petal svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        @keyframes petalFall {
+            0% {
+                transform: translateY(-60px) rotate(0deg) translateX(0px) scale(0.7);
+                opacity: 0;
+            }
+            3% {
+                opacity: 0.85;
+            }
+            15% {
+                transform: translateY(12vh) rotate(60deg) translateX(30px) scale(0.9);
+                opacity: 0.9;
+            }
+            30% {
+                transform: translateY(28vh) rotate(140deg) translateX(-20px) scale(0.75);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(50vh) rotate(250deg) translateX(45px) scale(0.85);
+                opacity: 0.8;
+            }
+            65% {
+                transform: translateY(65vh) rotate(340deg) translateX(-35px) scale(0.7);
+                opacity: 0.6;
+            }
+            80% {
+                transform: translateY(80vh) rotate(420deg) translateX(25px) scale(0.55);
+                opacity: 0.4;
+            }
+            95% {
+                transform: translateY(95vh) rotate(520deg) translateX(-15px) scale(0.3);
+                opacity: 0.15;
+            }
+            100% {
+                transform: translateY(105vh) rotate(600deg) translateX(10px) scale(0.15);
+                opacity: 0;
+            }
+        }
+
+        @keyframes petalSway {
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(18px);
+            }
+            75% {
+                transform: translateX(-18px);
+            }
+        }
+
+        /* ============ 点击爱心特效 ============ */
+        .click-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            animation: heartBurst 1.2s ease-out forwards;
+            font-size: 28px;
+            will-change: transform, opacity;
+        }
+
+        @keyframes heartBurst {
+            0% {
+                transform: translateY(0) scale(0.3) rotate(0deg);
+                opacity: 1;
+            }
+            25% {
+                transform: translateY(-40px) scale(1.3) rotate(15deg);
+                opacity: 0.9;
+            }
+            55% {
+                transform: translateY(-100px) scale(0.9) rotate(-10deg);
+                opacity: 0.6;
+            }
+            80% {
+                transform: translateY(-160px) scale(0.5) rotate(5deg);
+                opacity: 0.25;
+            }
+            100% {
+                transform: translateY(-220px) scale(0.15) rotate(20deg);
+                opacity: 0;
+            }
+        }
+
+        /* ============ 额外动画：星星闪烁 ============ */
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* ============ 固定导航栏（右上角） ============ */
+        .fixed-nav {
+            position: fixed;
+            top: 12px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 40px;
+            padding: 6px 12px;
+            box-shadow: 0 4px 18px rgba(180, 140, 140, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .fixed-nav a {
+            text-decoration: none;
+            color: var(--text-mid);
+            padding: 6px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+            letter-spacing: 0.8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.85rem;
+        }
+        .fixed-nav a:hover {
+            background: var(--pink-light);
+            color: var(--pink-deep);
+            transform: translateY(-1px);
+        }
+        .fixed-nav a.active {
+            background: var(--pink-deep);
+            color: white;
+            box-shadow: 0 2px 8px rgba(255, 107, 129, 0.4);
+        }
+
+        /* 黑胶唱片组件（在导航栏内） */
+        .record-player {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: var(--record-size);
+            height: var(--record-size);
+            cursor: pointer;
+            position: relative;
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+            background: transparent;
+            border: none;
+            outline: none;
+            margin-left: 4px;
+        }
+        .record-player:hover {
+            transform: scale(1.08);
+        }
+        .record-disc {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #333, #111 60%, #000 90%);
+            position: relative;
+            box-shadow: 0 0 0 3px #222, 0 0 0 6px #111, 0 0 0 10px #1a1a1a, 0 4px 15px rgba(0,0,0,0.5);
+            animation: spin 4s linear infinite;
+            animation-play-state: paused;
+            transition: box-shadow 0.3s;
+        }
+        .record-disc.playing {
+            animation-play-state: running;
+            box-shadow: 0 0 0 3px #222, 0 0 0 6px #111, 0 0 0 10px #1a1a1a, 0 4px 20px rgba(255, 107, 129, 0.7);
+        }
+        .record-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 35%;
+            height: 35%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ffb3c1, #e84393);
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            color: white;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            pointer-events: none;
+            text-align: center;
+            line-height: 1.1;
+        }
+        .record-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8%;
+            height: 8%;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px #ccc;
+            z-index: 5;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* 移动端导航调整 */
+        @media (max-width: 768px) {
+            .fixed-nav {
+                top: 8px;
+                right: 8px;
+                padding: 4px 8px;
+                gap: 6px;
+                border-radius: 30px;
+            }
+            .fixed-nav a {
+                padding: 4px 8px;
+                font-size: 0.75rem;
+                letter-spacing: 0.5px;
+            }
+            .record-player {
+                width: 40px;
+                height: 40px;
+            }
+            body {
+                padding-top: 60px;
+            }
+        }
+
+        /* ============ 主内容容器 ============ */
+        .main-wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 24px 60px;
+        }
+
+        /* ============ Hero 头部区域 ============ */
+        .hero-section {
+            text-align: center;
+            padding: 50px 30px 40px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .hero-ornament {
+            display: inline-block;
+            font-size: 40px;
+            animation: gentleFloat 3s ease-in-out infinite;
+            margin-bottom: 8px;
+        }
+        .hero-ornament.delay {
+            animation-delay: 1.5s;
+            font-size: 32px;
+            margin: 0 6px;
+        }
+
+        @keyframes gentleFloat {
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+            30% {
+                transform: translateY(-14px) scale(1.08);
+            }
+            60% {
+                transform: translateY(-6px) scale(0.95);
+            }
+        }
+
+        .hero-title {
+            font-family: 'Dancing Script', 'KaiTi', 'STKaiti', cursive;
+            font-size: clamp(2.6rem, 5vw, 3.8rem);
+            font-weight: 700;
+            color: var(--pink-deep);
+            margin-bottom: 6px;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px rgba(255, 107, 129, 0.2);
+            animation: fadeInDown 0.9s ease-out;
+        }
+
+        .hero-subtitle {
+            font-family: 'ZCOOL XiaoWei', 'Noto Serif SC', serif;
+            font-size: clamp(1rem, 2.2vw, 1.3rem);
+            color: var(--text-mid);
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+            animation: fadeInDown 0.9s ease-out 0.15s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 天数计数器 */
+        .days-counter-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 2px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 14px 32px;
+            box-shadow: var(--shadow-soft);
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .days-icon {
+            font-size: 28px;
+            animation: heartbeat 1.2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            14% {
+                transform: scale(1.25);
+            }
+            28% {
+                transform: scale(1);
+            }
+            42% {
+                transform: scale(1.2);
+            }
+            56% {
+                transform: scale(1);
+            }
+        }
+
+        .days-number {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--pink-deep);
+            line-height: 1;
+            min-width: 70px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .days-text {
+            font-size: 1rem;
+            color: var(--text-mid);
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
+
+        .anniversary-info {
+            margin-top: 14px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            letter-spacing: 1px;
+            animation: fadeInUp 0.8s ease-out 0.45s both;
+        }
+        .anniversary-info span {
+            color: var(--pink-deep);
+            font-weight: 500;
+        }
+
+        /* ============ 分割线装饰 ============ */
+        .divider-ornament {
+            text-align: center;
+            margin: 20px 0 30px;
+            font-size: 18px;
+            letter-spacing: 8px;
+            color: var(--pink);
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+            user-select: none;
+        }
+
+        /* ============ 回忆时间线 ============ */
+        .section-title {
+            text-align: center;
+            font-family: 'Dancing Script', 'KaiTi', cursive;
+            font-size: 2rem;
+            color: var(--pink-deep);
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--pink), transparent);
+            margin: 8px auto 0;
+            border-radius: 3px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-bottom: 35px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 10px 0;
+            margin: 0 auto;
+            max-width: 750px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg,
+                    transparent 0%,
+                    var(--pink) 5%,
+                    var(--pink-mid) 30%,
+                    var(--rose) 60%,
+                    var(--pink) 85%,
+                    transparent 100%);
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+
+        .timeline-item {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+            padding-right: calc(50% + 35px);
+        }
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+            padding-left: calc(50% + 35px);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translate(-50%, -50%);
+            width: 18px;
+            height: 18px;
+            background: var(--white);
+            border: 3px solid var(--pink-deep);
+            border-radius: 50%;
+            z-index: 3;
+            box-shadow: 0 0 0 8px rgba(255, 107, 129, 0.12);
+            transition: all 0.4s ease;
+        }
+        .timeline-item:hover .timeline-dot {
+            background: var(--pink-deep);
+            box-shadow: 0 0 0 16px rgba(255, 107, 129, 0.25);
+            transform: translate(-50%, -50%) scale(1.3);
+        }
+
+        .timeline-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1.5px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px 22px;
+            box-shadow: var(--shadow-card);
+            transition: all var(--transition-smooth);
+            cursor: default;
+            position: relative;
+            flex: 1;
+            max-width: 380px;
+        }
+        .timeline-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
+            border-color: var(--pink);
+        }
+        .timeline-card .card-date {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            color: var(--pink-deep);
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+        }
+        .timeline-card .card-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+        .timeline-card .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-mid);
+            line-height: 1.6;
+        }
+        .timeline-card .card-emoji {
+            font-size: 2rem;
+            position: absolute;
+            top: -18px;
+            right: 16px;
+            animation: gentleFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        /* ============ 照片画廊 ============ */
+        .gallery-section {
+            margin-top: 50px;
+            padding-top: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 3 / 4;
+            cursor: pointer;
+            box-shadow: var(--shadow-card);
+            transition: all var(--transition-smooth);
+            background: linear-gradient(135deg, #fce4e9, #f8d5db, #fde8ec);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.4s ease;
+        }
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .gallery-item:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-6px) scale(1.02);
+            border-color: var(--pink);
+            z-index: 5;
+        }
+        .gallery-item .gallery-placeholder {
+            text-align: center;
+            color: var(--pink-deep);
+            pointer-events: none;
+            user-select: none;
+            transition: opacity 0.3s;
+        }
+        .gallery-item.has-image .gallery-placeholder {
+            opacity: 0;
+        }
+        .gallery-item .gallery-placeholder .place-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 8px;
+            animation: gentleFloat 3.5s ease-in-out infinite;
+        }
+        .gallery-item .gallery-placeholder .place-text {
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            font-family: 'Noto Serif SC', serif;
+        }
+        .gallery-item:nth-child(1) {
+            background: linear-gradient(135deg, #fef0f3, #fce4ec, #fde8eb);
+        }
+        .gallery-item:nth-child(2) {
+            background: linear-gradient(135deg, #fdf2f5, #fbe9ee, #fef3f6);
+        }
+        .gallery-item:nth-child(3) {
+            background: linear-gradient(135deg, #fef5f7, #fce8ef, #fdf0f4);
+        }
+        .gallery-item:nth-child(4) {
+            background: linear-gradient(135deg, #fef3f5, #fde6ed, #fef2f5);
+        }
+        .gallery-item:nth-child(5) {
+            background: linear-gradient(135deg, #fef7f9, #fce9f0, #fdf3f7);
+        }
+        .gallery-item:nth-child(6) {
+            background: linear-gradient(135deg, #fef2f4, #fde7ee, #fef1f4);
+        }
+        .gallery-item:nth-child(7) {
+            background: linear-gradient(135deg, #fff0f5, #fde2ea, #fef4f7);
+        }
+        .gallery-item:nth-child(8) {
+            background: linear-gradient(135deg, #fef6f8, #fceaf0, #fdf2f6);
+        }
+        .gallery-item:nth-child(9) {
+            background: linear-gradient(135deg, #fef1f4, #fde5ed, #fef0f3);
+        }
+        .gallery-item:nth-child(10) {
+            background: linear-gradient(135deg, #fef3f6, #fde8ef, #fef5f8);
+        }
+        .gallery-item:nth-child(11) {
+            background: linear-gradient(135deg, #fef4f7, #fde9f0, #fef6f9);
+        }
+        .gallery-item:nth-child(12) {
+            background: linear-gradient(135deg, #fef5f8, #fdeaf1, #fef7fa);
+        }
+        .gallery-item:nth-child(13) {
+            background: linear-gradient(135deg, #fef6f9, #fdebf2, #fef8fb);
+        }
+        .gallery-item:nth-child(14) {
+            background: linear-gradient(135deg, #fef7fa, #fdecf3, #fef9fc);
+        }
+        .gallery-item:nth-child(15) {
+            background: linear-gradient(135deg, #fef8fb, #fdedf4, #fefafd);
+        }
+        .gallery-item:nth-child(16) {
+            background: linear-gradient(135deg, #fef9fc, #fdeef5, #fefbfe);
+        }
+        .gallery-item:nth-child(17) {
+            background: linear-gradient(135deg, #fefafd, #fdeff6, #fefcff);
+        }
+        .gallery-item:nth-child(18) {
+            background: linear-gradient(135deg, #fefbfe, #fdf0f7, #fefdff);
+        }
+        .gallery-item:nth-child(19) {
+            background: linear-gradient(135deg, #fefcff, #fdf1f8, #fefeff);
+        }
+        .gallery-item:nth-child(20) {
+            background: linear-gradient(135deg, #fefdfe, #fdf2f9, #ffffff);
+        }
+
+        .gallery-item .photo-label {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.85);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: var(--text-light);
+            letter-spacing: 1px;
+            pointer-events: none;
+            white-space: nowrap;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+        .gallery-item:hover .photo-label {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--pink-deep);
+        }
+
+        /* ============ 视频区域 ============ */
+        .video-section {
+            margin-top: 60px;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .video-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(6px);
+            border: 1.5px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            transition: all var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .video-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
+        }
+        .video-thumb {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #fadadd, #fce4ec);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--pink-deep);
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+        .video-card:hover .video-thumb {
+            transform: scale(1.03);
+        }
+        .video-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .video-desc {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* ============ 信件区域 ============ */
+        .letter-section {
+            margin-top: 60px;
+            text-align: center;
+        }
+        .envelope-wrapper {
+            display: inline-block;
+            cursor: pointer;
+            position: relative;
+            margin-top: 20px;
+            transition: transform 0.3s;
+        }
+        .envelope-wrapper:hover {
+            transform: scale(1.05);
+        }
+        .envelope {
+            width: 220px;
+            height: 160px;
+            position: relative;
+            background: #f8d5db;
+            border-radius: 12px 12px 4px 4px;
+            box-shadow: 0 10px 25px rgba(160, 120, 120, 0.3);
+            overflow: visible;
+        }
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: #f4c2cc;
+            border-radius: 12px 12px 0 0;
+            transform-origin: top center;
+            transition: transform 0.6s ease, background 0.3s;
+            z-index: 2;
+            clip-path: polygon(0 0, 100% 0, 50% 90%);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+            background: #fce4e9;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+        .envelope-body {
+            position: absolute;
+            top: 25%;
+            left: 5%;
+            width: 90%;
+            height: 65%;
+            background: #fef0f3;
+            border-radius: 0 0 8px 8px;
+            transition: background 0.3s;
+            overflow: hidden;
+        }
+        .letter-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #fffaf5;
+            padding: 15px 12px;
+            transform: translateY(100%);
+            transition: transform 0.6s ease;
+            border-radius: 4px;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            line-height: 1.7;
+            letter-spacing: 0.8px;
+            max-height: 180px;
+            overflow-y: auto;
+        }
+        .envelope.open .letter-content {
+            transform: translateY(0);
+        }
+        .envelope-seal {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            z-index: 3;
+            transition: opacity 0.3s;
+        }
+        .envelope.open .envelope-seal {
+            opacity: 0;
+        }
+
+        /* ============ 生日愿望墙 ============ */
+        .wish-section {
+            margin-top: 60px;
+            text-align: center;
+        }
+        .wish-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 25px;
+        }
+        .wish-bubble {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            box-shadow: var(--shadow-soft);
+            animation: gentleFloat 4s infinite ease-in-out;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.9);
+            letter-spacing: 0.5px;
+        }
+        .wish-bubble:hover {
+            background: white;
+            transform: scale(1.05);
+            border-color: var(--pink);
+        }
+
+        /* ============ 甜蜜语录 ============ */
+        .quotes-section {
+            margin-top: 55px;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .quote-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1.5px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px 28px;
+            max-width: 600px;
+            margin: 0 auto 16px;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.5s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .quote-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 6rem;
+            color: rgba(255, 107, 129, 0.1);
+            pointer-events: none;
+            line-height: 1;
+        }
+        .quote-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+        .quote-card .quote-text {
+            font-family: 'ZCOOL XiaoWei', 'Noto Serif SC', serif;
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            letter-spacing: 1.5px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+        .quote-card .quote-from {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+        .quote-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .quote-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--pink);
+            opacity: 0.4;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+        }
+        .quote-dot.active {
+            opacity: 1;
+            background: var(--pink-deep);
+            transform: scale(1.4);
+            box-shadow: 0 0 8px rgba(255, 107, 129, 0.5);
+        }
+        .quote-dot:hover {
+            opacity: 0.75;
+            transform: scale(1.2);
+        }
+
+        /* ============ 爱心按钮 ============ */
+        .heart-button-wrapper {
+            text-align: center;
+            margin: 45px 0 25px;
+        }
+
+        .heart-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--pink-deep), var(--pink-mid));
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            font-family: 'Noto Serif SC', serif;
+            box-shadow: 0 8px 25px rgba(255, 107, 129, 0.35);
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            outline: none;
+        }
+        .heart-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 35px rgba(255, 107, 129, 0.45);
+            background: linear-gradient(135deg, #ff5470, #ff7b95);
+        }
+        .heart-button:active {
+            transform: scale(0.95);
+            transition: all 0.15s ease;
+        }
+        .heart-button .btn-icon {
+            font-size: 1.4rem;
+            animation: heartbeat 1.2s ease-in-out infinite;
+        }
+        .heart-button .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: rippleEffect 0.7s ease-out forwards;
+            pointer-events: none;
+        }
+        @keyframes rippleEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* ============ 底部 ============ */
+        .footer-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+        }
+        .footer-section .footer-hearts {
+            font-size: 1.3rem;
+            letter-spacing: 4px;
+            margin-bottom: 6px;
+            animation: gentleFloat 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        /* ============ Lightbox 弹窗（图片/视频通用） ============ */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+        .lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .lightbox-content {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transform: scale(0.85);
+            transition: transform 0.35s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .lightbox-overlay.active .lightbox-content {
+            transform: scale(1);
+        }
+        .lightbox-content img,
+        .lightbox-content video {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            background: rgba(0,0,0,0.05);
+            border: none;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            padding: 2px 8px;
+            border-radius: 50%;
+            line-height: 1;
+            z-index: 5;
+        }
+        .lightbox-close:hover {
+            color: var(--pink-deep);
+            background: var(--pink-light);
+        }
+        .lb-text {
+            font-size: 1rem;
+            color: var(--text-mid);
+            letter-spacing: 0.5px;
+            padding: 0 10px;
+        }
+
+        /* ============ 响应式设计 ============ */
+        @media (max-width: 768px) {
+            .main-wrapper {
+                padding: 10px 14px 40px;
+            }
+            .hero-section {
+                padding: 30px 16px 25px;
+            }
+            .days-counter-wrapper {
+                padding: 10px 20px;
+                gap: 6px;
+            }
+            .days-number {
+                font-size: 2.4rem;
+                min-width: 50px;
+            }
+            .days-text {
+                font-size: 0.85rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                flex-direction: row;
+                padding-left: 50px;
+                padding-right: 0;
+            }
+            .timeline-dot {
+                left: 20px;
+                top: 18px;
+                width: 14px;
+                height: 14px;
+                border-width: 2.5px;
+                box-shadow: 0 0 0 5px rgba(255, 107, 129, 0.12);
+            }
+            .timeline-card {
+                max-width: 100%;
+                padding: 16px 14px;
+            }
+            .timeline-card .card-emoji {
+                font-size: 1.5rem;
+                top: -14px;
+                right: 10px;
+            }
+            .timeline-card .card-date {
+                font-size: 1.1rem;
+            }
+            .timeline-card .card-title {
+                font-size: 0.95rem;
+            }
+            .timeline-card .card-desc {
+                font-size: 0.8rem;
+            }
+            .timeline-item {
+                margin-bottom: 28px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .gallery-item {
+                aspect-ratio: 3 / 4;
+                border-radius: 12px;
+            }
+            .gallery-item .gallery-placeholder .place-icon {
+                font-size: 2.2rem;
+            }
+            .gallery-item .gallery-placeholder .place-text {
+                font-size: 0.7rem;
+            }
+            .gallery-item .photo-label {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+                bottom: 6px;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .quote-card {
+                padding: 22px 18px;
+            }
+            .quote-card .quote-text {
+                font-size: 1rem;
+            }
+            .heart-button {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+            .envelope {
+                width: 180px;
+                height: 130px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .gallery-item {
+                aspect-ratio: 3 / 4;
+            }
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            .days-number {
+                font-size: 2rem;
+            }
+            .timeline-card {
+                padding: 12px 10px;
+            }
+            .fixed-nav a {
+                padding: 3px 6px;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== 飘落花瓣容器 ==================== -->
+    <div class="petals-container" id="petalsContainer" aria-hidden="true"></div>
+
+    <!-- ==================== 固定导航栏（含黑胶唱片） ==================== -->
+    <nav class="fixed-nav" id="fixedNav">
+        <a href="#home" title="首页">🏠 首页</a>
+        <a href="#timeline" title="回忆">📜 回忆</a>
+        <a href="#gallery" title="照片">🖼️ 照片</a>
+        <a href="#videos" title="视频">🎥 视频</a>
+        <a href="#letter" title="信件">💌 信件</a>
+        <a href="#wishes" title="愿望">⭐ 愿望</a>
+        <!-- 黑胶唱片播放器 -->
+        <button class="record-player" id="recordPlayer" title="播放/暂停音乐">
+            <div class="record-disc" id="recordDisc">
+                <div class="record-label">小咩<br>❤️</div>
+                <div class="record-center"></div>
+            </div>
+        </button>
+    </nav>
+
+    <!-- 隐藏的音频元素 -->
+    <audio id="bgAudio" loop preload="auto">
+        <!-- 替换为你的歌曲URL -->
+        <source src="your-song.mp3" type="audio/mpeg">
+        您的浏览器不支持音频播放。
+    </audio>
+
+    <!-- ==================== 主内容区 ==================== -->
+    <div class="main-wrapper">
+
+        <!-- ========== Hero 头部 ========== -->
+        <header class="hero-section" id="home">
+            <div class="hero-ornament">🌸</div>
+            <h1 class="hero-title">小咩和小咪的故事</h1>
+            <p class="hero-subtitle">Our Sweet Memories · 生日快乐</p>
+
+            <!-- 天数计数器 -->
+            <div class="days-counter-wrapper">
+                <span class="days-icon">💕</span>
+                <span class="days-number" id="daysCount">0</span>
+                <span class="days-text">天</span>
+            </div>
+            <p class="anniversary-info">
+                从 <span id="startDateDisplay">2026年2月24日</span> 开始，<br class="mobile-break">每一天都是最珍贵的礼物
+            </p>
+        </header>
+
+        <!-- 分割装饰 -->
+        <div class="divider-ornament">— ✦ ❤ ✦ —</div>
+
+        <!-- ========== 回忆时间线 ========== -->
+        <section id="timeline">
+            <div class="section-title">时光印记</div>
+            <p class="section-subtitle">属于我们的每一个重要时刻</p>
+            <div class="timeline" id="timelineContainer">
+                <!-- 时间线节点由JS动态渲染 -->
+            </div>
+        </section>
+
+        <!-- 分割装饰 -->
+        <div class="divider-ornament">— ✦ ❤ ✦ —</div>
+
+        <!-- ========== 照片画廊 ========== -->
+        <section class="gallery-section" id="gallery">
+            <div class="section-title">甜蜜瞬间</div>
+            <p class="section-subtitle">每一帧都是心动，点击可查看回忆</p>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- 照片卡片由JS动态渲染 -->
+            </div>
+        </section>
+
+        <!-- 分割装饰 -->
+        <div class="divider-ornament">— ✦ ❤ ✦ —</div>
+
+        <!-- ========== 视频回忆 ========== -->
+        <section class="video-section" id="videos">
+            <div class="section-title">影像记忆</div>
+            <p class="section-subtitle">每一次播放，都是心动的回放</p>
+            <div class="video-grid" id="videoGrid">
+                <!-- 视频卡片由JS动态渲染 -->
+            </div>
+        </section>
+
+        <!-- 分割装饰 -->
+        <div class="divider-ornament">— ✦ ❤ ✦ —</div>
+
+        <!-- ========== 信件区域 ========== -->
+        <section class="letter-section" id="letter">
+            <div class="section-title">写给你的信</div>
+            <p class="section-subtitle">点击信封，拆开我的心意</p>
+            <div class="envelope-wrapper" id="envelopeWrapper">
+                <div class="envelope" id="envelope">
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-body">
+                        <div class="letter-content" id="letterContent">
+                            <p>亲爱的小咪：</p>
+                            <p>生日快乐！遇见你是生命中最美好的意外。你的笑容像阳光照亮我的世界，你的温柔让我每一天都充满动力。希望未来的每一个生日，我都能陪在你身边，一起创造更多甜蜜回忆。</p>
+                            <p>永远爱你的小咩</p>
+                        </div>
+                    </div>
+                    <div class="envelope-seal">💝</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 分割装饰 -->
+        <div class="divider-ornament">— ✦ ❤ ✦ —</div>
+
+        <!-- ========== 生日愿望墙 ========== -->
+        <section class="wish-section" id="wishes">
+            <div class="section-title">生日愿望</div>
+            <p class="section-subtitle">点击泡泡，看看我的愿望吧</p>
+            <div class="wish-container" id="wishContainer">
+                <!-- 愿望气泡动态生成 -->
+            </div>
+        </section>
+
+        <!-- 分割装饰 -->
+        <div class="divider-ornament">— ✦ ❤ ✦ —</div>
+
+        <!-- ========== 甜蜜语录 ========== -->
+        <section class="quotes-section">
+            <div class="section-title">想对你说</div>
+            <p class="section-subtitle">点击卡片切换甜言蜜语</p>
+            <div class="quote-card" id="quoteCard" title="点击切换下一句">
+                <p class="quote-text" id="quoteText"></p>
+                <p class="quote-from" id="quoteFrom"></p>
+            </div>
+            <div class="quote-nav" id="quoteNav"></div>
+        </section>
+
+        <!-- ========== 爱心互动按钮 ========== -->
+        <div class="heart-button-wrapper">
+            <button class="heart-button" id="heartButton">
+                <span class="btn-icon">💖</span> 点击撒爱心
+            </button>
+        </div>
+
+        <!-- ========== 底部 ========== -->
+        <footer class="footer-section">
+            <div class="footer-hearts">💗 💕 💗</div>
+            <p>Forever & Always</p>
+            <p style="font-size:0.75rem;margin-top:4px;">— 献给最爱的你 —</p>
+        </footer>
+    </div>
+
+    <!-- ==================== Lightbox 弹窗（图片/视频展示） ==================== -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <div class="lightbox-content" id="lightboxContent">
+            <button class="lightbox-close" id="lightboxClose" aria-label="关闭">✕</button>
+            <div id="lbMediaContainer"></div>
+            <p class="lb-text" id="lbText"></p>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        // GitHub 仓库信息（用于拼接 CDN 链接，请根据实际修改）
+        const GITHUB_USER = 'yao-5201314';
+        const GITHUB_REPO = 'our-memories';
+        const GITHUB_BRANCH = 'main';
+
+        function getMediaUrl(filename) {
+            return `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${GITHUB_BRANCH}/${filename}`;
+        }
+
+        // ==================== 配置 ====================
+        const START_DATE = new Date('2026-02-24');
+        
+        // 扩充时间线数据至20条以上
+        const timelineData = [
+            { date: '2026年2月24日', title: '初见心动', desc: '在那个阳光正好的午后，我第一次见到了你，世界突然变得明亮了起来。', emoji: '👋' },
+            { date: '2026年2月27日', title: '正式在一起', desc: '对我而言，今天是一个最浪漫的日子。你点头的那一刻，我的世界开满了花。', emoji: '💞' },
+            { date: '2026年3月14日', title: '白色情人节', desc: '第一次送你亲手做的巧克力，你笑得像个孩子。', emoji: '🍫' },
+            { date: '2026年5月1日', title: '第一次旅行', desc: '一起去了江边，晚风吹过你的发梢，那是我见过最美的风景。', emoji: '🌊' },
+            { date: '2026年6月1日', title: '儿童节约会', desc: '在游乐园里你像个小朋友一样开心，我偷偷许愿希望永远守护你的笑容。', emoji: '🎠' },
+            { date: '2026年8月9日', title: '你的生日', desc: '第一次陪你过生日，蛋糕上的烛光映在你眼里，比星星还亮。', emoji: '🎂' },
+            { date: '2026年10月1日', title: '国庆小长假', desc: '一起爬山，在山顶大喊彼此的名字，回声里都是爱意。', emoji: '⛰️' },
+            { date: '2026年12月24日', title: '平安夜之约', desc: '街灯闪烁，雪花飘落，我们在圣诞树下许下了共同的愿望。', emoji: '🎄' },
+            { date: '2027年1月1日', title: '新年第一个拥抱', desc: '除夕倒数后，我们第一件事就是紧紧相拥，新的一年也要黏在一起。', emoji: '🎆' },
+            { date: '2027年2月14日', title: '第一个情人节', desc: '准备了礼物，看到你的笑容，一切都那么完美。', emoji: '🌹' },
+            { date: '2027年2月27日', title: '一周年纪念', desc: '365天的甜蜜，365天的陪伴。未来的每一个周年，我都要和你一起过。', emoji: '🎂' },
+            { date: '2027年5月1日', title: '一起看日出', desc: '凌晨四点起床，走路到山顶。当第一缕阳光洒在你脸上时，我确定你就是我的太阳。', emoji: '🌅' },
+            { date: '2027年8月8日', title: '搬家小窝', desc: '我们终于有了自己的小窝，一起布置房间，每一处都是爱的痕迹。', emoji: '🏠' },
+            { date: '2028年1月1日', title: '新年的第一个吻', desc: '烟花在夜空绽放，我们在人群中紧紧相拥。新的一年，依旧是你。', emoji: '🎆' },
+            { date: '2028年2月24日', title: '两周年纪念', desc: '时间过得真快，爱却越来越深。谢谢你一直在我身边。', emoji: '💎' },
+            { date: '2028年6月18日', title: '一起养了一只猫', desc: '它叫“小团子”，成为了我们的小家人。', emoji: '🐱' },
+            { date: '2029年2月14日', title: '求婚', desc: '在初遇的咖啡馆，单膝跪地，你含着泪说“我愿意”，那一刻全世界都安静了。', emoji: '💍' },
+            { date: '2029年10月1日', title: '婚礼筹备', desc: '一起挑选婚纱、喜帖，虽然忙碌但每一秒都幸福。', emoji: '🤵👰' },
+            { date: '2030年1月1日', title: '我们的第一场雪', desc: '在新家的窗前看雪，你靠在我肩膀说“好温暖”。', emoji: '❄️' },
+            { date: '2030年6月1日', title: '怀孕的消息', desc: '你拿着两道杠的验孕棒又哭又笑，我激动得差点晕过去。', emoji: '🤰' },
+            { date: '2031年3月3日', title: '宝宝出生', desc: '我们的女儿来到了这个世界，小小的手握住我的手指，生命的奇迹。', emoji: '👶' },
+            { date: '2031年12月31日', title: '一家三口跨年', desc: '抱着宝宝一起看烟花，她咯咯笑的样子融化了所有疲惫。', emoji: '👨‍👩‍👧' },
+            { date: '2032年2月27日', title: '六周年快乐', desc: '已经习惯了每天醒来看见你，余生还请多多指教。', emoji: '💖' },
+            { date: '2033年8月8日', title: '换了大房子', desc: '为了给宝宝更大的空间，我们搬了新家，你设计的儿童房超棒。', emoji: '🏡' },
+            { date: '2035年1月1日', title: '十周年誓言', desc: '十年了，我还像第一天那样深爱着你。下个十年，我们继续。', emoji: '💑' },
+            { date: '2040年2月14日', title: '银婚旅行', desc: '重游我们第一次旅行的地方，风景依旧，爱意更浓。', emoji: '✈️' },
+            { date: '2050年6月1日', title: '金婚前夕', desc: '孙子孙女围在身边，听我们讲年轻时的故事，你依然是我眼里最美的女孩。', emoji: '👵👴' },
+            { date: '2060年12月31日', title: '相伴一生', desc: '手牵手坐在摇椅上，夕阳把影子拉得很长，这一生有你就够了。', emoji: '🌇' }
+        ];
+
+        // 扩充画廊至18张，混合图片和视频
+        const galleryPhotos = [
+            { id: 1, img: '0a2ebfe0940aa3c672974c43b9427a0c.mp4', text: '我们的第一张合照', desc: '这是我们第一张合照，虽然不是真的，但是每次看到都会嘴角上扬~', type: 'video' },
+            { id: 2, img: '0fbdf3a1c476ffffea06b58f2a88d71c.jpg', text: '小咪', desc: '在我眼里，你比日落更美。', type: 'image' },
+            { id: 3, img: '2a3b241c8ca4cd3fc897735f59d5ead2.jpg', text: '宝宝', desc: '世界上最好吃的蛋糕是你。', type: 'image' },
+            { id: 4, img: '2f79285c9299630f849ffe01e9420e27.jpg', text: '静静', desc: '想给你唱一辈子的歌', type: 'image' },
+            { id: 5, img: '5f520a6f95043bd9b2fcccd3b2d9e802.jpg', text: '笨蛋小猪', desc: '每次打着视频，聊着有的没的，就是最幸福的时光。', type: 'image' },
+            { id: 6, img: 'd7ef7eab6184969a25647c47522ba53f.jpg', text: '世界上最好的女孩', desc: '如果可以，我想找到一颗属于我们两个的星星。', type: 'image' },
+            { id: 7, img: 'photo7.jpg', text: '一起做饭', desc: '你切菜我炒菜，厨房里都是笑声。', type: 'image' },
+            { id: 8, img: 'photo8.jpg', text: '海边踏浪', desc: '你的裙摆被海浪打湿，却笑得像个孩子。', type: 'image' },
+            { id: 9, img: 'video9.mp4', text: '生日惊喜vlog', desc: '偷偷录下你许愿的瞬间，每次看都感动。', type: 'video' },
+            { id: 10, img: 'photo10.jpg', text: '冬日暖阳', desc: '在公园长椅上晒太阳，你说想就这样到老。', type: 'image' },
+            { id: 11, img: 'photo11.jpg', text: '毕业典礼', desc: '我毕业那天，你抱着一束花站在人群里，比我还开心。', type: 'image' },
+            { id: 12, img: 'photo12.jpg', text: '第一次看电影', desc: '电影情节忘了，只记得黑暗中你牵住了我的手。', type: 'image' },
+            { id: 13, img: 'photo13.jpg', text: '樱花树下', desc: '花瓣落在你头发上，我没舍得弹开，因为太美了。', type: 'image' },
+            { id: 14, img: 'video14.mp4', text: '一起健身', desc: '虽然你总偷懒，但陪你流汗的时光很珍贵。', type: 'video' },
+            { id: 15, img: 'photo15.jpg', text: '深夜便利店', desc: '半夜饿了一起去买关东煮，你靠在我肩膀等微波炉叮。', type: 'image' },
+            { id: 16, img: 'photo16.jpg', text: '雨中共伞', desc: '伞太小了，我把你搂紧，结果两个人都淋湿了。', type: 'image' },
+            { id: 17, img: 'photo17.jpg', text: '我们的家', desc: '小小的客厅，大大的爱。', type: 'image' },
+            { id: 18, img: 'photo18.jpg', text: '手写信', desc: '你写给我的第一封信，我保存至今。', type: 'image' }
+        ];
+
+        // 扩充视频数据
+        const videoData = [
+            { id: 101, thumb: 'video-thumb1.jpg', src: 'our-video1.mp4', title: '第一次旅行vlog', desc: '江边的风和你' },
+            { id: 102, thumb: 'video-thumb2.jpg', src: 'our-video2.mp4', title: '生日惊喜', desc: '偷偷准备的派对' },
+            { id: 103, thumb: 'video-thumb3.jpg', src: 'our-video3.mp4', title: '日常小确幸', desc: '一起做饭的时光' },
+            { id: 104, thumb: 'video-thumb4.jpg', src: 'our-video4.mp4', title: '跨年倒数', desc: '烟花下的亲吻' },
+            { id: 105, thumb: 'video-thumb5.jpg', src: 'our-video5.mp4', title: '宠物日常', desc: '小团子卖萌合集' },
+            { id: 106, thumb: 'video-thumb6.jpg', src: 'our-video6.mp4', title: '婚礼幕后', desc: '紧张又甜蜜的准备' }
+        ];
+
+        // 扩充语录
+        const quotesList = [
+            { text: '遇见你，是我生命中最美丽的意外。', from: '— 写给你的第一封信' },
+            { text: '你是我所有温柔的来源，也是我所有心动的归宿。', from: '— 某个想你的夜晚' },
+            { text: '世界很大，但我的心很小，小到只能装下你一个人。', from: '— 日记里的句子' },
+            { text: '和你在一起的每一天，都是情人节。', from: '— 日常告白' },
+            { text: '我想和你一起，看遍世间所有的日出日落。', from: '— 旅行前的约定' },
+            { text: '你是我的软肋，也是我的铠甲。', from: '— 心里话' },
+            { text: '如果可以，我想把所有的温柔都给你。', from: '— 深夜消息' },
+            { text: '谢谢你来爱我，也谢谢你让我爱你。', from: '— 感恩节那天' },
+            { text: '余生很长，但我只想和你一起度过。', from: '— 求婚誓言' },
+            { text: '你笑起来的时候，我的世界就亮了。', from: '— 每天早晨' },
+            { text: '喜欢是乍见之欢，爱是久处不厌。', from: '— 我们的写照' },
+            { text: '即使白发苍苍，你依然是我手心里的宝。', from: '— 五十年后的信' },
+            { text: '你是我平淡生活里的刺眼星辰。', from: '— 某个午后' },
+            { text: '最好的爱情不是轰轰烈烈，而是朝朝暮暮。', from: '— 我们的日常' },
+            { text: '下辈子还要遇见你。', from: '— 不许耍赖' },
+        ];
+
+        // 生日愿望内容
+        const wishList = [
+            '愿你永远健康快乐',
+            '希望我们每年都一起过生日',
+            '想要带你去冰岛看极光',
+            '希望你的小烦恼统统消失',
+            '愿你吃再多也不胖',
+            '想和你一起解锁100个城市',
+            '希望你的笑容永远像今天一样甜',
+            '愿我们早日拥有自己的花园',
+            '希望你工作顺心，少加班',
+            '我想陪你度过往后每一个生日',
+            '愿时光对我们温柔以待',
+            '希望我们的故事永远没有句号'
+        ];
+
+        // ==================== 飘落花瓣 ====================
+        function createPetals() {
+            const container = document.getElementById('petalsContainer');
+            const colors = ['#ffb3c1','#ffc2d1','#ffd1dc','#ffb8c9','#f8c4d4','#ffccd5','#fddde6','#ffe0e6','#ffc8d6','#f9d5df','#ffdae3','#fce4ec'];
+            const shapes = [
+                '<svg viewBox="0 0 30 30"><ellipse cx="15" cy="10" rx="6" ry="9" fill="COLOR" opacity="0.85"/></svg>',
+                '<svg viewBox="0 0 32 28"><path d="M16 26 C16 26 2 18 2 9 C2 3.5 6.5 1 9.5 1 C12.5 1 16 4 16 7 C16 4 19.5 1 22.5 1 C25.5 1 30 3.5 30 9 C30 18 16 26 16 26Z" fill="COLOR" opacity="0.8"/></svg>',
+            ];
+            const count = window.innerWidth < 600 ? 18 : 28;
+            const frag = document.createDocumentFragment();
+            for (let i = 0; i < count; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                const size = Math.random() * 18 + 14;
+                petal.style.width = size + 'px';
+                petal.style.height = size + 'px';
+                petal.style.left = Math.random() * 95 + '%';
+                petal.style.animationDuration = (Math.random() * 14 + 10) + 's';
+                petal.style.animationDelay = (Math.random() * 16) + 's';
+                petal.style.opacity = (Math.random() * 0.3 + 0.15);
+                const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                petal.innerHTML = shape.replace(/COLOR/g, color);
+                frag.appendChild(petal);
+            }
+            container.appendChild(frag);
+        }
+
+        // ==================== 天数更新 ====================
+        function updateDaysCount() {
+            const now = new Date();
+            const diffDays = Math.floor((now - START_DATE) / (1000 * 60 * 60 * 24));
+            const el = document.getElementById('daysCount');
+            if (diffDays >= 0) {
+                const current = parseInt(el.textContent) || 0;
+                if (current === diffDays) return;
+                let startVal = current > 0 ? current : Math.max(0, diffDays - 200);
+                const duration = 800;
+                const startTime = performance.now();
+                function step(ts) {
+                    const progress = Math.min((ts - startTime) / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    el.textContent = Math.round(startVal + (diffDays - startVal) * eased);
+                    if (progress < 1) requestAnimationFrame(step);
+                    else el.textContent = diffDays;
+                }
+                requestAnimationFrame(step);
+            } else el.textContent = '...';
+            document.getElementById('startDateDisplay').textContent =
+                START_DATE.getFullYear() + '年' + (START_DATE.getMonth()+1) + '月' + START_DATE.getDate() + '日';
+        }
+
+        // ==================== 渲染时间线 ====================
+        function renderTimeline() {
+            const container = document.getElementById('timelineContainer');
+            const frag = document.createDocumentFragment();
+            timelineData.forEach((item, i) => {
+                const div = document.createElement('div');
+                div.className = 'timeline-item';
+                div.style.transitionDelay = (i * 0.04) + 's';
+                div.innerHTML = `
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="card-emoji">${item.emoji}</span>
+                        <div class="card-date">${item.date}</div>
+                        <div class="card-title">${item.title}</div>
+                        <div class="card-desc">${item.desc}</div>
+                    </div>`;
+                frag.appendChild(div);
+            });
+            container.appendChild(frag);
+            setTimeout(() => {
+                document.querySelectorAll('.timeline-item').forEach((item, i) => {
+                    setTimeout(() => item.classList.add('visible'), i * 80);
+                });
+            }, 300);
+        }
+
+        // ==================== 渲染画廊 ====================
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            const frag = document.createDocumentFragment();
+            galleryPhotos.forEach((photo, i) => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.style.transitionDelay = (i * 0.05) + 's';
+                if (photo.img && photo.type !== 'video') {
+                    const url = getMediaUrl(photo.img);
+                    item.style.background = `url(${url}) center/cover no-repeat`;
+                    item.classList.add('has-image');
+                } else if (photo.img && photo.type === 'video') {
+                    item.style.background = `linear-gradient(135deg, #fce4ec, #f8d5db)`;
+                    item.classList.add('has-image');
+                }
+                item.innerHTML = `
+                    <div class="gallery-placeholder">
+                        <span class="place-icon">${photo.type === 'video' ? '🎬' : '📸'}</span>
+                        <span class="place-text">${photo.text}</span>
+                    </div>
+                    <span class="photo-label">${photo.text}</span>
+                `;
+                item.addEventListener('click', () => {
+                    openLightbox(photo);
+                });
+                frag.appendChild(item);
+            });
+            grid.appendChild(frag);
+            setTimeout(() => {
+                document.querySelectorAll('.gallery-item').forEach((item, i) => {
+                    setTimeout(() => item.classList.add('visible'), i * 60);
+                });
+            }, 400);
+        }
+
+        // ==================== 渲染视频区 ====================
+        function renderVideos() {
+            const videoGrid = document.getElementById('videoGrid');
+            if (!videoGrid) return;
+            const frag = document.createDocumentFragment();
+            videoData.forEach((vid) => {
+                const card = document.createElement('div');
+                card.className = 'video-card';
+                const thumbStyle = vid.thumb ? `background-image: url(${getMediaUrl(vid.thumb)});` : '';
+                card.innerHTML = `
+                    <div class="video-thumb" style="${thumbStyle}">
+                        ${vid.thumb ? '' : '🎬'}
+                    </div>
+                    <div class="video-title">${vid.title}</div>
+                    <div class="video-desc">${vid.desc}</div>
+                `;
+                card.addEventListener('click', () => {
+                    openVideoLightbox(vid);
+                });
+                frag.appendChild(card);
+            });
+            videoGrid.appendChild(frag);
+        }
+
+        // ==================== 渲染愿望墙 ====================
+        function renderWishes() {
+            const container = document.getElementById('wishContainer');
+            if (!container) return;
+            const frag = document.createDocumentFragment();
+            wishList.forEach((wish, i) => {
+                const bubble = document.createElement('div');
+                bubble.className = 'wish-bubble';
+                bubble.textContent = wish;
+                bubble.style.animationDelay = i * 0.1 + 's';
+                bubble.addEventListener('click', () => {
+                    alert('✨ ' + wish + ' ✨');
+                });
+                frag.appendChild(bubble);
+            });
+            container.appendChild(frag);
+        }
+
+        // ==================== Lightbox 通用 ====================
+        function openLightbox(photo) {
+            const overlay = document.getElementById('lightboxOverlay');
+            const mediaContainer = document.getElementById('lbMediaContainer');
+            const textEl = document.getElementById('lbText');
+            mediaContainer.innerHTML = '';
+            if (photo.img) {
+                const url = getMediaUrl(photo.img);
+                if (photo.type === 'video') {
+                    const video = document.createElement('video');
+                    video.src = url;
+                    video.controls = true;
+                    video.autoplay = true;
+                    video.style.maxWidth = '100%';
+                    video.style.maxHeight = '70vh';
+                    video.style.borderRadius = '12px';
+                    mediaContainer.appendChild(video);
+                } else {
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.alt = photo.text || '';
+                    img.loading = 'lazy';
+                    mediaContainer.appendChild(img);
+                }
+            }
+            textEl.textContent = photo.desc || '';
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openVideoLightbox(vid) {
+            const overlay = document.getElementById('lightboxOverlay');
+            const mediaContainer = document.getElementById('lbMediaContainer');
+            const textEl = document.getElementById('lbText');
+            mediaContainer.innerHTML = '';
+            const video = document.createElement('video');
+            video.src = getMediaUrl(vid.src);
+            video.controls = true;
+            video.autoplay = true;
+            video.style.maxWidth = '100%';
+            video.style.maxHeight = '70vh';
+            video.style.borderRadius = '12px';
+            mediaContainer.appendChild(video);
+            textEl.textContent = vid.title + ' - ' + vid.desc;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const overlay = document.getElementById('lightboxOverlay');
+            overlay.classList.remove('active');
+            const mediaContainer = document.getElementById('lbMediaContainer');
+            const video = mediaContainer.querySelector('video');
+            if (video) video.pause();
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+        document.getElementById('lightboxOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // ==================== 信件动画 ====================
+        function initLetter() {
+            const envelopeWrapper = document.getElementById('envelopeWrapper');
+            const envelope = document.getElementById('envelope');
+            if (!envelopeWrapper || !envelope) return;
+            envelopeWrapper.addEventListener('click', () => {
+                envelope.classList.toggle('open');
+            });
+        }
+
+        // ==================== 黑胶唱片播放控制 ====================
+        function initRecordPlayer() {
+            const recordBtn = document.getElementById('recordPlayer');
+            const recordDisc = document.getElementById('recordDisc');
+            const audio = document.getElementById('bgAudio');
+            if (!recordBtn || !audio) return;
+            let playing = false;
+            recordBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (playing) {
+                    audio.pause();
+                    recordDisc.classList.remove('playing');
+                    playing = false;
+                } else {
+                    audio.play().then(() => {
+                        recordDisc.classList.add('playing');
+                        playing = true;
+                    }).catch(err => {
+                        console.warn('音频播放失败:', err);
+                    });
+                }
+            });
+            audio.addEventListener('pause', () => {
+                recordDisc.classList.remove('playing');
+                playing = false;
+            });
+            audio.addEventListener('play', () => {
+                recordDisc.classList.add('playing');
+                playing = true;
+            });
+        }
+
+        // ==================== 语录轮播 ====================
+        let currentQuoteIndex = 0;
+
+        function renderQuotes() {
+            const nav = document.getElementById('quoteNav');
+            if (!nav) return;
+            const frag = document.createDocumentFragment();
+            quotesList.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.className = 'quote-dot';
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => switchQuote(index));
+                frag.appendChild(dot);
+            });
+            nav.innerHTML = '';
+            nav.appendChild(frag);
+            updateQuoteDisplay();
+        }
+
+        function switchQuote(index) {
+            currentQuoteIndex = index;
+            updateQuoteDisplay();
+            document.querySelectorAll('.quote-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        function updateQuoteDisplay() {
+            const q = quotesList[currentQuoteIndex];
+            document.getElementById('quoteText').textContent = q.text;
+            document.getElementById('quoteFrom').textContent = q.from;
+            const card = document.getElementById('quoteCard');
+            card.style.transform = 'scale(0.97)';
+            card.style.opacity = '0.6';
+            setTimeout(() => {
+                card.style.transform = 'scale(1)';
+                card.style.opacity = '1';
+            }, 150);
+        }
+
+        const quoteCard = document.getElementById('quoteCard');
+        if (quoteCard) {
+            quoteCard.addEventListener('click', () => {
+                switchQuote((currentQuoteIndex + 1) % quotesList.length);
+            });
+        }
+
+        // ==================== 爱心特效 ====================
+        function createClickHeart(x, y) {
+            const heart = document.createElement('span');
+            heart.className = 'click-heart';
+            const emojis = ['💕', '💖', '💗', '💝', '💘', '✨', '🌸', '💐', '🩷', '❤️‍🔥'];
+            heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
+            heart.style.fontSize = (Math.random() * 20 + 22) + 'px';
+            document.body.appendChild(heart);
+            heart.addEventListener('animationend', () => heart.remove());
+        }
+
+        document.addEventListener('click', function(e) {
+            if (['button','a','input','textarea'].includes(e.target.tagName.toLowerCase())) return;
+            if (e.target.closest('.fixed-nav') || e.target.closest('.record-player')) return;
+            createClickHeart(e.clientX, e.clientY);
+        });
+
+        function burstHearts(x, y, count = 14) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    createClickHeart(x + (Math.random()-0.5)*180, y + (Math.random()-0.5)*180 - 30);
+                }, i * 25);
+            }
+        }
+
+        const heartButton = document.getElementById('heartButton');
+        if (heartButton) {
+            heartButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const rect = this.getBoundingClientRect();
+                burstHearts(rect.left + rect.width/2, rect.top + rect.height/2, 20);
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple';
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+                ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+                this.appendChild(ripple);
+                ripple.addEventListener('animationend', () => ripple.remove());
+            });
+        }
+
+        // ==================== 导航栏高亮 ====================
+        function updateNavHighlight() {
+            const sections = document.querySelectorAll('section, header');
+            const navLinks = document.querySelectorAll('.fixed-nav a');
+            let currentId = 'home';
+            sections.forEach(sec => {
+                const rect = sec.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    currentId = sec.id || 'home';
+                }
+            });
+            navLinks.forEach(a => {
+                const href = a.getAttribute('href');
+                if (href && href.substring(1) === currentId) {
+                    a.classList.add('active');
+                } else {
+                    a.classList.remove('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', updateNavHighlight, { passive: true });
+
+        // ==================== 滚动动画 ====================
+        function handleScrollReveal() {
+            document.querySelectorAll('.timeline-item:not(.visible), .gallery-item:not(.visible)').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 80 && rect.bottom > 0) el.classList.add('visible');
+            });
+        }
+        window.addEventListener('scroll', handleScrollReveal, { passive: true });
+
+        // ==================== 键盘控制 ====================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') switchQuote((currentQuoteIndex + 1) % quotesList.length);
+            if (e.key === 'ArrowLeft') switchQuote((currentQuoteIndex - 1 + quotesList.length) % quotesList.length);
+            if (e.key === ' ' && e.target === document.body) {
+                e.preventDefault();
+                const audio = document.getElementById('bgAudio');
+                if (audio.paused) audio.play(); else audio.pause();
+            }
+        });
+
+        // ==================== 启动 ====================
+        function init() {
+            createPetals();
+            updateDaysCount();
+            renderTimeline();
+            renderGallery();
+            renderVideos();
+            renderWishes();
+            renderQuotes();
+            initLetter();
+            initRecordPlayer();
+            updateNavHighlight();
+            setTimeout(handleScrollReveal, 600);
+            setInterval(updateDaysCount, 60000);
+        }
+
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+        else init();
+    })();
+    </script>
+
+</body>
+</html>
